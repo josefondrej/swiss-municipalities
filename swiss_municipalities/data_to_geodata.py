@@ -2,12 +2,12 @@ import geopandas
 from geopandas import GeoDataFrame
 from pandas import read_csv, DataFrame
 
-from swiss_municipalities.colormap import municipality_type_legend_handles
-from swiss_municipalities.load_data import get_data
+from swiss_municipalities.typology_colormap import municipality_type_legend_handles
+from swiss_municipalities.municipality_geodata import load_municipality_geodata
 from swiss_municipalities.wgs84_to_lv03 import GPSConverter
 
 
-def convert_to_geodata(data: DataFrame) -> GeoDataFrame:
+def data_to_geodata(data: DataFrame) -> GeoDataFrame:
     """Converts dataframe with latitude and longitude columns to GeoDataFrame
     with points in the LV03 coordinate system"""
     converter = GPSConverter()
@@ -30,9 +30,9 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
 
     # Load Municipality and City Data
-    municipality_data = get_data()
+    municipality_data = load_municipality_geodata()
     city_data = read_csv("./src/city_coordinates.csv")
-    city_geodata = convert_to_geodata(data=city_data)
+    city_geodata = data_to_geodata(data=city_data)
 
     # Plot Municipalities
     ax = municipality_data.plot(
