@@ -2,8 +2,7 @@ import geopandas as gpd
 from geopandas import GeoDataFrame
 
 from swiss_municipalities.colormap import type_to_color, municipality_type_legend_handles
-from swiss_municipalities.names import id_to_name
-from swiss_municipalities.types import id_to_type
+from swiss_municipalities.typologies import id_to_typology
 
 _lake_names = [
     "Lac Léman (VD)",
@@ -44,34 +43,10 @@ def _is_lake(name: str) -> bool:
 def get_data() -> GeoDataFrame:
     data = gpd.read_file("./src/swissBOUNDARIES3D_1_3_TLM_HOHEITSGEBIET.shp")
 
-    name_to_id = {value: key for key, value in id_to_name.items()}
+    # We are only interested in Swiss Municipalities
+    data = data[data["ICC"] == "CH"]
 
-    # The data sources do not match exactly with the municipalities
-    # There were some mergers of municipalities into larger ones on 1st Jan 2020
-    # Here we try to partially fix a few examples, but we were not able to fix all
-    # https://en.wikipedia.org/wiki/Thurnen,_Bern
-    # https://en.wikipedia.org/wiki/Villaz-Saint-Pierre
-    # https://en.wikipedia.org/wiki/Villaz-Saint-Pierre
-    # https://en.wikipedia.org/wiki/Prez-vers-Nor%C3%A9az
-    name_to_id_fix = {
-        "Verzasca": 5095,
-        "Bergün Filisur": 3522,
-        "La Punt Chamues-ch": 3785,
-        "Stammheim": 36,
-        "Prez": 2221,
-        "Villaz": 2111,
-        "Büsingen am Hochrhein": 7101,
-        "Thurnen": 873,
-        "Comunanza Cadenazzo/Monteceneri": 5391,
-        "Campione d'Italia": 7301,
-        "Comunanza Capriasca/Lugano": 5394
-    }
-
-    name_to_id.update(name_to_id_fix)
-
-    data["ID"] = data["NAME"].apply(name_to_id.get)
-
-    data["TYPE"] = data["ID"].apply(id_to_type.get)
+    data["TYPE"] = data["BFS_NUMMER"].apply(id_to_typology.get)
     data.loc[data["NAME"].apply(_is_lake), "TYPE"] = "lake"
 
     data["COLOR"] = data["TYPE"].apply(type_to_color.get)

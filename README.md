@@ -8,8 +8,21 @@ from the websites of:
 - [Bundesamt für Landestopografie](https://shop.swisstopo.admin.ch/de/products/landscape/boundaries3D)
 - [Bundesamt für Statistik](https://www.atlas.bfs.admin.ch/maps/13/de/12360_12482_3191_227/20593.html)
 
+## Requirements
+
+Developed with `python = 3.8`, to install the required libraries run
+
+```
+python -m pip install -r requirements.txt
+```
+
 ## Missing Data
 
 For some municipalities we have missing data about the typology, you can check the state of the missing values on the
-map below.
-![](./src/map.png)
+map below, which can be produced by going in the folder `swiss-municipalities` and running
+
+```
+python ./swiss_municipalities/load_data.py
+```
+
+![](src/map.png)
