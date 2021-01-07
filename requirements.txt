@@ -1,1 +1,2 @@
-Fiona~=1.8.18
+matplotlib~=3.3.3
+geopandas~=0.8.1
