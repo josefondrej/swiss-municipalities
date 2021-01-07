@@ -26,3 +26,8 @@ python ./swiss_municipalities/load_data.py
 ```
 
 ![](src/map.png)
+
+## Coordinate Conversion
+
+The underlying data is in the Swiss LV03 coordinate system. To convert it to the standard WGS84 we use
+the [converter by Harald von Waldow](https://github.com/hvwaldow/SwissGrid).
