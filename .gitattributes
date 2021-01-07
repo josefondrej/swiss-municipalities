@@ -1,1 +1,8 @@
 src/ filter=lfs diff=lfs merge=lfs -text
+src/swissBOUNDARIES3D_1_3_TLM_HOHEITSGEBIET.shp filter=lfs diff=lfs merge=lfs -text
+src/swissBOUNDARIES3D_1_3_TLM_HOHEITSGEBIET.shx filter=lfs diff=lfs merge=lfs -text
+src/id_to_name.json filter=lfs diff=lfs merge=lfs -text
+src/id_to_type.json filter=lfs diff=lfs merge=lfs -text
+src/swissBOUNDARIES3D_1_3_TLM_HOHEITSGEBIET.cpg filter=lfs diff=lfs merge=lfs -text
+src/swissBOUNDARIES3D_1_3_TLM_HOHEITSGEBIET.dbf filter=lfs diff=lfs merge=lfs -text
+src/swissBOUNDARIES3D_1_3_TLM_HOHEITSGEBIET.prj filter=lfs diff=lfs merge=lfs -text

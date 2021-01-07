@@ -1,4 +1,4 @@
-# Swiss Geodata
+# Swiss Municipalities
 
 Small utility that helps to determine in
 which [municipality](https://en.wikipedia.org/wiki/List_of_municipalities_of_Switzerland) lies a given coordinate in
