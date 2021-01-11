@@ -1,7 +1,7 @@
 import os
 
-path_sep = "/"
-package_path = path_sep.join(os.path.dirname(__file__).split(path_sep)[:-1]) + path_sep
+path_sep = os.path.sep
+package_path = "/".join(os.path.dirname(__file__).split(path_sep)[:-1]) + "/"
 
 
 def abs_path(package_relative_path: str):
