@@ -2,8 +2,9 @@ import geopandas
 from geopandas import GeoDataFrame
 from pandas import read_csv, DataFrame
 
-from swiss_municipalities.typology_colormap import municipality_type_legend_handles
 from swiss_municipalities.municipality_geodata import load_municipality_geodata
+from swiss_municipalities.paths import abs_path
+from swiss_municipalities.typology_colormap import municipality_type_legend_handles
 from swiss_municipalities.wgs84_to_lv03 import GPSConverter
 
 
@@ -31,7 +32,7 @@ if __name__ == '__main__':
 
     # Load Municipality and City Data
     municipality_data = load_municipality_geodata()
-    city_data = read_csv("./src/city_coordinates.csv")
+    city_data = read_csv(abs_path("src/city_coordinates.csv"))
     city_geodata = data_to_geodata(data=city_data)
 
     # Plot Municipalities

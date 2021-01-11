@@ -9,6 +9,7 @@ from shapely.geometry import Point
 
 from swiss_municipalities.data_to_geodata import data_to_geodata
 from swiss_municipalities.municipality_geodata import load_municipality_geodata
+from swiss_municipalities.paths import abs_path
 
 
 def expand_point_to_circle(center: Point, radius: float = 15000, point_density: int = 10) \
@@ -55,7 +56,7 @@ def expand_points_to_circles(geodata: GeoDataFrame, radius: float = 10000, point
 
 
 if __name__ == '__main__':
-    df = read_csv("./src/city_coordinates.csv")
+    df = read_csv(abs_path("src/city_coordinates.csv"))
     geo_df = data_to_geodata(data=df)
 
     expanded_geo_df = expand_points_to_circles(geo_df, 15000, 8)

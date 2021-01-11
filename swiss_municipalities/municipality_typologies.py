@@ -1,7 +1,9 @@
 import json
 from statistics import mode
 
-with open("./src/id_to_type.json") as id_to_type_file:
+from swiss_municipalities.paths import abs_path
+
+with open(abs_path("src/id_to_type.json")) as id_to_type_file:
     id_to_type_raw = json.load(id_to_type_file)
 
 id_to_typology = {int(municipality_id.replace("|", "")): municipality_info["value"]

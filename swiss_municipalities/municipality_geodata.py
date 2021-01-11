@@ -1,8 +1,11 @@
+import os
+
 import geopandas as gpd
 from geopandas import GeoDataFrame
 
-from swiss_municipalities.typology_colormap import type_to_color, municipality_type_legend_handles
 from swiss_municipalities.municipality_typologies import id_to_typology
+from swiss_municipalities.paths import abs_path
+from swiss_municipalities.typology_colormap import type_to_color, municipality_type_legend_handles
 
 _lake_names = [
     "Lac Léman (VD)",
@@ -41,7 +44,7 @@ def _is_lake(name: str) -> bool:
 
 
 def load_municipality_geodata() -> GeoDataFrame:
-    data = gpd.read_file("./src/swissBOUNDARIES3D_1_3_TLM_HOHEITSGEBIET.shp")
+    data = gpd.read_file(abs_path("src/swissBOUNDARIES3D_1_3_TLM_HOHEITSGEBIET.shp"))
 
     # We are only interested in Swiss Municipalities
     data = data[data["ICC"] == "CH"]
@@ -69,4 +72,4 @@ if __name__ == '__main__':
     base.set_axis_off()
     plt.legend(handles=municipality_type_legend_handles)
     plt.tight_layout()
-    plt.savefig("./src/map.png")
+    plt.savefig(abs_path("src/map.png"))
